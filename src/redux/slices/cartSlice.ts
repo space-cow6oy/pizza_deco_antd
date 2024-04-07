@@ -27,7 +27,7 @@ const initialState: CartState = {
   price: 0,
 };
 //id, category, imageUrl, price, rating, sizes, title, types
-
+//asdawdawdawd
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
