@@ -9,7 +9,7 @@ export const Navigation = (/*{ categoryId, setCategoryId }*/) => {
   const dispatch = useDispatch();
 
   return (
-    <Flex style={{ padding: '0px 0px 0px 0px' }}>
+    <Flex wrap="wrap" gap="small" style={{ padding: '0px 0px 0px 0px' }}>
       {navlinks.map((link, index) => (
         <Button
           onClick={() => dispatch(setActiveCategory(index))}

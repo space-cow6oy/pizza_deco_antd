@@ -1,4 +1,3 @@
-import s from './Home.module.scss';
 import { PizzaBlock } from '../../components/PizzaBlock/PizzaBlock';
 import { Menu } from '../../components/Menu/Menu';
 import { Loader } from '../../components/Loader/Loader';
@@ -8,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { RootState } from '../../redux/store';
-import { Flex } from 'antd';
+import { Col, Row } from 'antd';
 
 type Items =
   | {
@@ -90,18 +89,23 @@ export const Home = () => {
   return (
     <>
       <Menu />
-
-      {items == 'Not found' ? (
-        ''
-      ) : (
-        <div className={s.pizza__list}>
-          {
-            isLoading
+      <Row
+        gutter={[{ xs: 16, sm: 16, md: 16, lg: 70 }, 16]}
+        justify={{ xs: 'center', sm: 'center', md: 'center', lg: 'space-between' }}>
+        {items == 'Not found' ? (
+          ''
+        ) : (
+          <>
+            {isLoading
               ? [...new Array(5)].map((_, index) => <Loader key={index} />)
-              : items.map((item, index) => <PizzaBlock key={index} {...item} />) /* pizzas */
-          }
-        </div>
-      )}
+              : items.map((item, index) => (
+                  <Col>
+                    <PizzaBlock key={index} {...item} />
+                  </Col>
+                ))}
+          </>
+        )}
+      </Row>
 
       <_Pagination setCurrentPage={setCurrentPage} itemsOnPageLimitCount={itemsOnPageLimitCount} />
     </>

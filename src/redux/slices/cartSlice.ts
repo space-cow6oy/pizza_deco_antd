@@ -26,8 +26,7 @@ const initialState: CartState = {
   count: 0,
   price: 0,
 };
-//id, category, imageUrl, price, rating, sizes, title, types
-//asdawdawdawd
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -64,14 +63,21 @@ const cartSlice = createSlice({
         state.price = state.price - action.payload.price;
       }
     },
+    removeItemFromListCart(state, action: PayloadAction<AddItemProp>) {
+      state.count -= state.items[action.payload.index].count;
+      state.price -=
+        state.items[action.payload.index].price * state.items[action.payload.index].count;
+      state.items.splice(action.payload.index, 1);
+    },
 
     clearCart(state) {
-      state.items = []
+      state.items = [];
       state.price = 0;
       state.count = 0;
-    }
+    },
   },
 });
 
-export const { addToCart, addItem, removeItem, clearCart } = cartSlice.actions;
+export const { addToCart, addItem, removeItem, clearCart, removeItemFromListCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

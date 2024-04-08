@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
 // export type SortType = 'популярности' | 'цене' | 'алфавиту';
 
 type FilterState = {
   activeCategory: number;
-  activeSortType: string
+  activeSortType: string;
 };
-
 
 const initialState: FilterState = {
   activeCategory: 0,
@@ -18,10 +16,10 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setActiveCategory(state, action : PayloadAction<number>) {
+    setActiveCategory(state, action: PayloadAction<number>) {
       state.activeCategory = action.payload;
     },
-    setActiveSortType(state, action : PayloadAction<string>) {
+    setActiveSortType(state, action: PayloadAction<string>) {
       state.activeSortType = action.payload;
     },
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { addItem } from '../../redux/slices/cartSlice';
+import { addItem, removeItemFromListCart } from '../../redux/slices/cartSlice';
 import { useDispatch } from 'react-redux';
 import { CartItemType } from '../../redux/slices/cartSlice';
 import { removeItem, clearCart } from '../../redux/slices/cartSlice';
@@ -29,6 +29,10 @@ export const CartItem: React.FC<CartItemProps> = ({
     dispatch(removeItem({ index, price }));
   };
 
+  const removeItemFromCart = () => {
+    dispatch(removeItemFromListCart({ index, price }));
+  };
+
   return (
     <Flex align="center" justify="space-between">
       <div style={{ padding: '25px 0px', borderRadius: '25px' }}>
@@ -41,17 +45,19 @@ export const CartItem: React.FC<CartItemProps> = ({
           {activeType}, {activeSize} см
         </span>
       </Flex>
-      <Flex gap={10} align='center'>
-      <Button size="small" onClick={removeItemOnClick}>
-        -
-      </Button>
-      <span>{count}</span>
-      <Button size="small" onClick={addItemOnClick}>
-        +
-      </Button>
+      <Flex gap={10} align="center">
+        <Button size="small" onClick={removeItemOnClick}>
+          -
+        </Button>
+        <span>{count}</span>
+        <Button size="small" onClick={addItemOnClick}>
+          +
+        </Button>
       </Flex>
       <span>{price} Р</span>
-      <Button size="small">удалить</Button>
+      <Button onClick={removeItemFromCart} size="small">
+        удалить
+      </Button>
     </Flex>
   );
 };

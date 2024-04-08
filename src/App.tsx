@@ -10,12 +10,14 @@ import { Flex } from 'antd';
 const App: React.FC = () => {
   return (
     <Flex vertical style={{ width: 'calc(100vw - 10%)', margin: '0 auto' }}>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </>
     </Flex>
   );
 };
